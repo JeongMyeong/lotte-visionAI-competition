@@ -124,9 +124,10 @@ aug = A.Compose([
   - b0, b1, b2 모델이 더 깊어질수록 성능도 조금씩 향상되는 모습을 보였음.
   
   ## Others
-  - epochs를 고정시켜둔 채로 Batch Size의 변화에 따른 실험과 Batch Size를 고정시켜둔 채로 Epochs 변화에 따른 실험을 한 결과가 있지만 
-  - 
-  - 
+  - Epoch과 Batch Size에 따른 실험 결과는 성능 변화가 크게 있지 않으므로 생략.
+  - Batch Size 128 일때 Epoch 40~55 가 좋은 성능을 보임.
+
+
 # 결론
 - Train, Test 에는 pinch에 따른 데이터 분포 차이가 존재 -> 여러 augmentation 방법을 통해 일부 overfitting 되는 부분을 완화 시킴.
 - 특히 mixup 과 cutmix를 통해 아주 큰 성능 향상을 보였음.
