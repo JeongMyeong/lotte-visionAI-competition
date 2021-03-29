@@ -24,12 +24,11 @@
   - 훈련 데이터에는 0도, 30도 각도에서 찍은 것이 있지만 시험(제출) 데이터에는 0,30,60도 각도가 있음.
 
 # 데이터 훝기 & 전략 세우기
-- 데이터는 360도 roll 촬영된 것으로 영상을 frame 단위로 저장한 것일 수 있음 -> 훈련, 검증으로 나눌 시 overfitting 될 가능성이 높음.
+- 데이터는 360도 roll 촬영된 것으로 영상을 frame 단위로 저장한 것일 수 있음 -> train으로 주어진 데이터로만 훈련, 검증으로 나눌 시 overfitting 될 가능성이 높음. 어쩔 수 없는 부분.
 - 상품 이미지의 text를 추출하여 feature로 사용하는 방법 -> 이미지의 해상도가 작기 때문에 정보를 추출하기 어려움
-- baseline code를 만들어 제출해 보았을 때 75~79 성능을 냄 -> train/validation에 overfitting 된것을 확인
+- baseline code를 만들어 제출해 보았을 때 validation 99.xx가 75~79 성능을 냄 -> train/validation분포에만 overfitting 된것을 확인
 - overfitting 을 완화하기 위해 augmentation 전략 세우는 것을 최우선으로 둠.
-- baseline 을 통해 앙상블시 1~3 점 점수 향상이 있었음.
-- 
+- baseline model 을 통해 soft voting ensemble 시도하여 1~3 점 점수 향상이 있었음. -> ensemble로 분류 성능이 
 
 - Data Augmentation 방법
   - 데이터의 촬영 정보를 보면 훈련 데이터로 주어진 것은 60도각도가 없다. 60도 각도 뿐만 아니라 여러 각도를 보충 해줄 수 있는 방법을 고려
@@ -42,7 +41,7 @@
     - Rotate
   - Some Tricks
     - mixup
-    - cutmix
+    - [cutmix](https://github.com/clovaai/CutMix-PyTorch)
 ```
 aug = A.Compose([
             A.ShiftScaleRotate(border_mode=1),
@@ -85,10 +84,10 @@ aug = A.Compose([
   - 각 Network를 훈련시킬 때 5-fold로 분리를 한 후 prob soft voting ensemble.
 
 # Experiments Results
-  ## augmentation에 따른 성능 변화
-
-  <center>  
-
+  ## augmentation에 따른 실험 결과
+    - megaproduct 시스템에 제출된 점수 (testset의 validation, testset의 private은 공개되지 않음)
+    - None은 전체 aug method를 사용한 결과.
+    - 
   |제외 aug method|score|
   |---------------|-----|
   |None|91.457|
@@ -102,6 +101,33 @@ aug = A.Compose([
   |CLAHE|91.114|
   |ShiftScaleRotate|91.294|  
 
-  </center>
+  
+  - cutmix와 mixup 방법을 제외 했을 때 아주 큰 성능 차이를 보였음.
+  - 즉, cutmix와 mixup 방법으로 아주 큰 성능 향상을 보였음.
+  - 나머지 방법들에 대해서도 약간의 성능 변화가 있었지만 각 1회 훈련한 결과이므로 차이가 있을 수 있음.
+  - 이후 실험들에 대해서는 모두 사용하여 훈련을 하였음.
 
-# 
+
+
+  ## model ensemble에 따른 실험 결과
+
+  |model|score|
+  |---------------|-----|
+  |EfficientNet B0|94.233|
+  |EfficientNet B1|94.404|
+  |EfficientNet B2|94.603|
+  
+  - 해당 성능은 TTA를 적용시켜 제출한 결과.
+  - TTA시 약 0.2 정도 점수가 향상됨.
+  - 추가) 해당 결과는 Adam optimizer를 사용한 결과로 AdamP 혹은 SAM 을 사용하면 약 0.1~0.2 향상 함.
+  - single fold 에서 91.xxx 성능을 보이던 것을 soft voting ensemble하면 2~3 정도 향상.
+  - b0, b1, b2 모델이 더 깊어질수록 성능도 조금씩 향상되는 모습을 보였음.
+  
+  ## Others
+  - epochs를 고정시켜둔 채로 Batch Size의 변화에 따른 실험과 Batch Size를 고정시켜둔 채로 Epochs 변화에 따른 실험을 한 결과가 있지만 
+  - 
+  - 
+# 결론
+- Train, Test 에는 pinch에 따른 데이터 분포 차이가 존재 -> 여러 augmentation 방법을 통해 일부 overfitting 되는 부분을 완화 시킴.
+- 특히 mixup 과 cutmix를 통해 아주 큰 성능 향상을 보였음.
+- 모델의 크기가 커질 수록 성능이 향상. (실험한 모델보다 더 큰 모델인 b3-b7 모델들을 통해 직접확인 해 보지 못했지만 큰 성능 향상은 없을것으로 보임.)
