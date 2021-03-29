@@ -1,4 +1,4 @@
-[site](https://megaproduct.lotte.net/competitionSummary/6)
+롯데정보통신 Vision AI 경진대회(채용연계) [site](https://megaproduct.lotte.net/competitionSummary/6)
 
 # 주제
 - 유통 진열 상품 약 1,000종 대상 이미지 분류 AI 모델 개발
