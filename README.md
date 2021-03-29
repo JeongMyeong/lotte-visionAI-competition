@@ -69,7 +69,9 @@ aug = A.Compose([
   ## scheduler
     - Cosine Annealing 
     - [Polynomial decay](https://github.com/cmpark0126/pytorch-polynomial-lr-decay)
-
+  ## LearningRate
+    - init LR : 1e-3
+    - end LR : 1e-6
   ## Epochs & Batch size
     - Epochs : 50
     - Batch Size : 128
@@ -126,7 +128,7 @@ aug = A.Compose([
   ## Others
   - Epoch과 Batch Size에 따른 실험 결과는 성능 변화가 크게 있지 않으므로 생략.
   - Batch Size 128 일때 Epoch 40~55 가 좋은 성능을 보임.
-
+  - Learning Rate는 init으로 1e-3, end로 1e-6 scheduler를 통해 조절했을 때 가장 성능이 좋았음.
 
 # 결론
 - Train, Test 에는 pinch에 따른 데이터 분포 차이가 존재 -> 여러 augmentation 방법을 통해 일부 overfitting 되는 부분을 완화 시킴.
