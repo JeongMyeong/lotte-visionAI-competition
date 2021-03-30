@@ -122,15 +122,15 @@ aug = A.Compose([
   |EfficientNet B2|94.603|
   
   - 해당 성능은 TTA를 적용시켜 제출한 결과.
-  - TTA시 약 0.02 정도 점수가 향상됨.
-  - 추가) 해당 결과는 Adam optimizer를 사용한 결과로 AdamP 혹은 SAM 을 사용하면 약 0.01~0.02 향상 함.
-  - single fold 에서 91.xxx 성능을 보이던 것을 soft voting ensemble하면 2~3 정도 향상.
+  - TTA시 약 ```0.02``` 정도 점수가 향상됨.
+  - 추가) 해당 결과는 ```Adam``` optimizer를 사용한 결과로 ```AdamP``` 혹은 ```SAM``` 을 사용하면 약 ```0.01~0.02``` 향상 함.
+  - single fold 에서 ```91.xxx``` 성능을 보이던 것을 soft voting ensemble하면 ```2~3``` 정도 향상.
   - b0, b1, b2 모델이 더 깊어질수록 성능도 조금씩 향상되는 모습을 보였음.
   
   ## Others
   - Epoch과 Batch Size에 따른 실험 결과는 성능 변화가 크게 있지 않으므로 생략.
-  - Batch Size 128 일때 Epoch 40~55 가 좋은 성능을 보임.
-  - Learning Rate는 init으로 1e-3, end로 1e-6 scheduler를 통해 조절했을 때 가장 성능이 좋았음.
+  - Batch Size ```128``` 일때 Epoch ```40~55``` 가 좋은 성능을 보임.
+  - Learning Rate는 init으로 ```1e-3```, end로 ```1e-6``` scheduler를 통해 조절했을 때 가장 성능이 좋았음.
 
 # 결론
 - Train, Test 에는 pinch에 따른 데이터 분포 차이가 존재 -> 여러 augmentation 방법을 통해 일부 overfitting 되는 부분을 완화 시킴.
