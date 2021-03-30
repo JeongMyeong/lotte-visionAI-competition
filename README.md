@@ -92,7 +92,6 @@ aug = A.Compose([
   ## augmentation에 따른 실험 결과
     - megaproduct 시스템에 제출된 점수 (testset의 validation, testset의 private은 공개되지 않음)
     - None은 전체 aug method를 사용한 결과.
-    - 
   |제외 aug method|score|
   |---------------|-----|
   |None|91.457|
@@ -123,8 +122,8 @@ aug = A.Compose([
   |EfficientNet B2|94.603|
   
   - 해당 성능은 TTA를 적용시켜 제출한 결과.
-  - TTA시 약 0.2 정도 점수가 향상됨.
-  - 추가) 해당 결과는 Adam optimizer를 사용한 결과로 AdamP 혹은 SAM 을 사용하면 약 0.1~0.2 향상 함.
+  - TTA시 약 0.02 정도 점수가 향상됨.
+  - 추가) 해당 결과는 Adam optimizer를 사용한 결과로 AdamP 혹은 SAM 을 사용하면 약 0.01~0.02 향상 함.
   - single fold 에서 91.xxx 성능을 보이던 것을 soft voting ensemble하면 2~3 정도 향상.
   - b0, b1, b2 모델이 더 깊어질수록 성능도 조금씩 향상되는 모습을 보였음.
   
