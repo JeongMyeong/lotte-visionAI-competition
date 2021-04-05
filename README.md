@@ -90,7 +90,7 @@ aug = A.Compose([
 
 # Experiments Results
   ## augmentation에 따른 실험 결과
-    - megaproduct 시스템에 제출된 점수 (testset의 validation, testset의 private은 공개되지 않음)
+    - megaproduct 시스템에 제출된 점수 (testset의 validation을 기록, * testset의 private은 공개되지 않음)
     - None은 전체 aug method를 사용한 결과.
   |제외 aug method|score|
   |---------------|-----|
