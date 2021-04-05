@@ -66,18 +66,18 @@ aug = A.Compose([
     - EfficientNet B2
 
   ## optimizer
-    - [AdamP](https://github.com/clovaai/AdamP)
-    - Adam
-    - [SAM](https://github.com/davda54/sam)
+  - [AdamP](https://github.com/clovaai/AdamP)
+  - Adam
+  - [SAM](https://github.com/davda54/sam)
   ## scheduler
-    - Cosine Annealing 
-    - [Polynomial decay](https://github.com/cmpark0126/pytorch-polynomial-lr-decay)
+  - Cosine Annealing 
+  - [Polynomial decay](https://github.com/cmpark0126/pytorch-polynomial-lr-decay)
   ## LearningRate
-    - init LR : 1e-3
-    - end LR : 1e-6
+  - init LR : ```1e-3```
+  - end LR : ```1e-6```
   ## Epochs & Batch size
-    - Epochs : 50
-    - Batch Size : 128
+  - Epochs : ```50```
+  - Batch Size : ```128```
 
   ## Loss
     - CrossEntropy Loss
